@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Fernando Martinez — Full Stack Developer</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#080E1A;color:#CBD5E1;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:#060C18;}
+::-webkit-scrollbar-thumb{background:#1D4ED8;border-radius:3px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,14,26,0.85);backdrop-filter:blur(12px);border-bottom:1px solid #1a2f55;padding:0 40px;}
+.nav-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;}
+.nav-logo{font-size:15px;font-weight:700;color:#F1F5F9;letter-spacing:-0.3px;}
+.nav-logo span{color:#22D3EE;}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{font-size:13px;color:#475569;text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:#22D3EE;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 40px 60px;position:relative;overflow:hidden;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(34,211,238,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,0.04) 1px,transparent 1px);background-size:44px 44px;}
+.hero-glow{position:absolute;top:10%;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(29,78,216,0.15) 0%,transparent 68%);pointer-events:none;}
+.hero-glow2{position:absolute;bottom:0;right:0;width:400px;height:300px;background:radial-gradient(ellipse,rgba(34,211,238,0.06) 0%,transparent 70%);pointer-events:none;}
+.hero-content{position:relative;z-index:1;max-width:700px;}
+.avatar{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#1D4ED8,#22D3EE);display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;color:#fff;margin:0 auto 24px;border:2px solid rgba(34,211,238,0.4);}
+.pill{display:inline-flex;align-items:center;gap:8px;background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.3);color:#22D3EE;font-size:12px;letter-spacing:0.8px;padding:5px 16px;border-radius:20px;margin-bottom:20px;}
+.pill-dot{width:7px;height:7px;background:#22D3EE;border-radius:50%;animation:blink 1.6s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.25;}}
+h1{font-size:clamp(32px,5vw,52px);font-weight:700;color:#F1F5F9;letter-spacing:-1px;margin-bottom:10px;line-height:1.1;}
+h1 span{color:#22D3EE;}
+.hero-role{font-size:18px;color:#38BDF8;margin-bottom:8px;font-weight:400;}
+.hero-loc{font-size:14px;color:#475569;margin-bottom:32px;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-bottom:36px;}
+.htag{background:rgba(15,28,63,0.7);border:1px solid #1E3A6E;color:#94A3B8;font-size:12px;padding:6px 14px;border-radius:7px;}
+.htag.hi{border-color:rgba(34,211,238,0.3);color:#22D3EE;background:rgba(34,211,238,0.05);}
+.hero-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.hlink{display:flex;align-items:center;gap:8px;background:rgba(15,28,63,0.6);border:1px solid #1E3A6E;color:#64748B;font-size:13px;padding:10px 20px;border-radius:9px;text-decoration:none;transition:all 0.2s;}
+.hlink:hover{border-color:#22D3EE;color:#22D3EE;background:rgba(34,211,238,0.06);}
+.hlink svg{width:15px;height:15px;fill:currentColor;}
+
+/* SECTIONS */
+section{padding:80px 40px;}
+.inner{max-width:900px;margin:0 auto;}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:36px;}
+.sec-label{font-size:11px;color:#22D3EE;letter-spacing:2.5px;text-transform:uppercase;white-space:nowrap;}
+.sec-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(34,211,238,0.25),transparent);}
+.sec-num{font-size:11px;color:#1D4ED8;font-weight:700;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;}
+.yaml-block{background:#050A14;border:1px solid #1a2f55;border-radius:12px;padding:22px 24px;font-family:'Fira Code','Courier New',monospace;font-size:13px;line-height:2.1;}
+.yk{color:#22D3EE;}
+.yv{color:#A5F3FC;}
+.yc{color:#334155;}
+.ys{color:#38BDF8;}
+.about-text{font-size:14px;color:#64748B;line-height:1.9;}
+.about-text strong{color:#94A3B8;font-weight:500;}
+.about-text p{margin-bottom:14px;}
+
+/* SKILLS */
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;}
+.skill-card{background:#050A14;border:1px solid #1a2f55;border-radius:12px;padding:18px 20px;transition:border-color 0.2s;}
+.skill-card:hover{border-color:rgba(34,211,238,0.25);}
+.sk-label{font-size:10px;color:#22D3EE;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;}
+.sk-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.sk-tag{font-size:11px;color:#475569;background:rgba(20,35,70,0.5);border:1px solid #1a2f55;padding:3px 10px;border-radius:5px;}
+.sk-tag.p{color:#38BDF8;border-color:rgba(56,189,248,0.22);background:rgba(56,189,248,0.06);}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.proj{background:#050A14;border:1px solid #1a2f55;border-radius:12px;padding:22px;transition:all 0.2s;}
+.proj:hover{border-color:rgba(34,211,238,0.3);transform:translateY(-2px);}
+.proj.wip{border-style:dashed;opacity:0.72;}
+.proj.wip:hover{opacity:0.9;}
+.proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;}
+.proj-name{font-size:15px;font-weight:600;color:#CBD5E1;}
+.proj-badge{font-size:10px;padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+.done{background:rgba(16,185,129,0.09);border:1px solid rgba(16,185,129,0.22);color:#34D399;}
+.wip-b{background:rgba(245,158,11,0.09);border:1px solid rgba(245,158,11,0.2);color:#FBBF24;}
+.priv{background:rgba(100,116,139,0.1);border:1px solid rgba(100,116,139,0.2);color:#64748B;font-size:10px;padding:2px 8px;border-radius:4px;margin-bottom:8px;display:inline-block;}
+.proj-desc{font-size:13px;color:#475569;line-height:1.7;margin-bottom:14px;}
+.proj-stack{display:flex;flex-wrap:wrap;gap:5px;}
+.chip{font-size:11px;background:rgba(29,78,216,0.09);border:1px solid rgba(29,78,216,0.2);color:#60A5FA;padding:3px 9px;border-radius:5px;}
+.proj-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:#1D4ED8;text-decoration:none;margin-top:12px;transition:color 0.2s;}
+.proj-link:hover{color:#22D3EE;}
+
+/* AGILE */
+.agile-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.ag{background:#050A14;border:1px solid #1a2f55;border-radius:12px;padding:18px 20px;}
+.ag-title{font-size:12px;color:#94A3B8;margin-bottom:12px;display:flex;align-items:center;gap:7px;font-weight:500;}
+.ag-dot{width:6px;height:6px;border-radius:50%;background:#22D3EE;flex-shrink:0;}
+.ag-items{display:flex;flex-wrap:wrap;gap:6px;}
+.ag-item{font-size:11px;color:#475569;background:rgba(15,25,50,0.7);border:1px solid #111C2E;padding:3px 10px;border-radius:5px;}
+
+/* EDUCATION */
+.edu-list{display:flex;flex-direction:column;gap:12px;}
+.edu-item{background:#050A14;border:1px solid #1a2f55;border-radius:12px;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;}
+.edu-name{font-size:14px;color:#CBD5E1;font-weight:500;margin-bottom:3px;}
+.edu-sub{font-size:12px;color:#475569;}
+.edu-badge{font-size:11px;background:rgba(16,185,129,0.09);border:1px solid rgba(16,185,129,0.22);color:#34D399;padding:4px 12px;border-radius:20px;}
+
+/* LEARNING */
+.learn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:9px;}
+.learn-item{background:#050A14;border:1px solid #1a2f55;border-radius:9px;padding:12px 16px;font-size:13px;color:#475569;display:flex;align-items:center;gap:9px;}
+.learn-arrow{color:#22D3EE;font-size:12px;flex-shrink:0;}
+
+/* CONTACT */
+.contact-box{background:#050A14;border:1px solid #1a2f55;border-radius:14px;padding:48px 40px;text-align:center;}
+.contact-title{font-size:22px;font-weight:700;color:#F1F5F9;margin-bottom:10px;}
+.contact-sub{font-size:14px;color:#475569;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;}
+.contact-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.clink{display:flex;align-items:center;gap:8px;background:rgba(15,28,63,0.6);border:1px solid #1E3A6E;color:#64748B;font-size:13px;padding:11px 22px;border-radius:9px;text-decoration:none;transition:all 0.2s;}
+.clink:hover{border-color:#22D3EE;color:#22D3EE;background:rgba(34,211,238,0.06);}
+.clink svg{width:15px;height:15px;fill:currentColor;flex-shrink:0;}
+
+/* FOOTER */
+footer{padding:28px 40px;text-align:center;border-top:1px solid #111C2E;}
+.footer-bar{height:3px;background:linear-gradient(90deg,transparent,#1D4ED8,#22D3EE,transparent);border-radius:2px;margin-bottom:20px;}
+footer p{font-size:12px;color:#1E293B;}
+
+/* DIVIDER */
+.alt{background:#060C18;}
+
+@media(max-width:700px){
+  nav{padding:0 20px;}
+  .hero{padding:90px 24px 50px;}
+  .about-grid,.proj-grid,.agile-grid{grid-template-columns:1fr;}
+  section{padding:60px 24px;}
+  .contact-box{padding:32px 24px;}
+  footer{padding:20px 24px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">FM<span>.</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#stack">Stack</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="avatar">FM</div>
+    <div class="pill">
+      <span class="pill-dot"></span>
+      Open to Internship &amp; Junior Roles
+    </div>
+    <h1>Fernando <span>Martinez</span></h1>
+    <div class="hero-role">Backend-Oriented Full Stack Developer</div>
+    <div class="hero-loc">Systems Engineering · Final Year · Costa Rica 🇨🇷</div>
+    <div class="hero-tags">
+      <span class="htag hi">Spring Boot</span>
+      <span class="htag hi">Laravel</span>
+      <span class="htag hi">Vue.js</span>
+      <span class="htag">Kotlin</span>
+      <span class="htag">.NET / C#</span>
+      <span class="htag">MySQL · Oracle</span>
+      <span class="htag">REST APIs</span>
+    </div>
+    <div class="hero-links">
+      <a class="hlink" href="https://github.com/Fernand0martinez" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.6-4.04-1.6-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a class="hlink" href="https://www.linkedin.com/in/fernando-antonio-martinez-14b464309" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>
+        LinkedIn
+      </a>
+      <a class="hlink" href="mailto:fernando.martinez.developer@gmail.com">
+        <svg viewBox="0 0 24 24"><path d="M24 5.46v13.08A2.46 2.46 0 0121.54 21H2.46A2.46 2.46 0 010 18.54V5.46L12 13.5 24 5.46zm0-2.46L12 11 0 3h21.54A2.46 2.46 0 0124 5.46V3z"/></svg>
+        Email
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="alt">
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <span class="sec-label">Sobre mí</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="yaml-block">
+        <span class="yk">name</span>: <span class="yv">Fernando Martinez</span><br>
+        <span class="yk">location</span>: <span class="yv">Costa Rica</span><br>
+        <span class="yk">role</span>: <span class="yv">Backend Full Stack Dev</span><br>
+        <span class="yk">education</span>:<br>
+        &nbsp;&nbsp;- <span class="ys">Diploma en Software Dev</span><br>
+        &nbsp;&nbsp;- <span class="ys">Ingeniería en Sistemas</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="yc"># último año</span><br>
+        <span class="yk">focus</span>:<br>
+        &nbsp;&nbsp;- <span class="ys">REST API Design</span><br>
+        &nbsp;&nbsp;- <span class="ys">Backend Architecture</span><br>
+        &nbsp;&nbsp;- <span class="ys">Relational Databases</span><br>
+        &nbsp;&nbsp;- <span class="ys">Web &amp; Mobile Dev</span><br>
+        <span class="yk">available</span>: <span class="yv">true</span> <span class="yc"># internship / junior</span>
+      </div>
+      <div class="about-text">
+        <p>Soy un <strong>desarrollador full stack orientado al backend</strong>, apasionado por construir software limpio, organizado, escalable y mantenible.</p>
+        <p>Con base sólida en <strong>Java, Spring Boot, Laravel y PHP</strong>, disfruto diseñar APIs bien estructuradas y trabajar con bases de datos relacionales.</p>
+        <p>Actualmente en el <strong>último año de Ingeniería en Sistemas</strong> y en búsqueda activa de una <strong>pasantía o posición junior</strong> para crecer profesionalmente y contribuir a proyectos reales.</p>
+        <p>Me motivan los desafíos técnicos, el trabajo en equipo y las metodologías ágiles aplicadas de forma efectiva.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <span class="sec-label">Tech Stack</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <div class="sk-label">Backend</div>
+        <div class="sk-tags">
+          <span class="sk-tag p">Java</span><span class="sk-tag p">Spring Boot</span><span class="sk-tag p">PHP</span><span class="sk-tag p">Laravel</span><span class="sk-tag">.NET</span><span class="sk-tag">C#</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-label">Frontend</div>
+        <div class="sk-tags">
+          <span class="sk-tag p">Vue.js</span><span class="sk-tag">React</span><span class="sk-tag">TypeScript</span><span class="sk-tag">JavaScript</span><span class="sk-tag">HTML5</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-label">Mobile</div>
+        <div class="sk-tags">
+          <span class="sk-tag p">Kotlin</span><span class="sk-tag p">Jetpack Compose</span><span class="sk-tag">Android Studio</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-label">Databases</div>
+        <div class="sk-tags">
+          <span class="sk-tag p">MySQL</span><span class="sk-tag">SQL Server</span><span class="sk-tag">Oracle</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-label">Tools</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Git</span><span class="sk-tag">GitHub</span><span class="sk-tag">Postman</span><span class="sk-tag">Jira</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-label">Agile</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Scrum</span><span class="sk-tag">Kanban</span><span class="sk-tag">User stories</span><span class="sk-tag">Backlog</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="alt">
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <span class="sec-label">Proyectos</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="proj-grid">
+      <div class="proj">
+        <div class="proj-top">
+          <div class="proj-name">Full Stack Web System</div>
+          <span class="proj-badge done">Completado</span>
+        </div>
+        <div class="priv">Academic · Private repo</div>
+        <div class="proj-desc">Sistema web colaborativo con backend estructurado, endpoints REST y frontend interactivo. Gestión ágil con Jira y GitHub en equipo.</div>
+        <div class="proj-stack">
+          <span class="chip">Laravel</span><span class="chip">PHP</span><span class="chip">Vue.js</span><span class="chip">MySQL</span><span class="chip">Jira</span>
+        </div>
+      </div>
+      <div class="proj">
+        <div class="proj-top">
+          <div class="proj-name">Mobile App + Backend</div>
+          <span class="proj-badge done">Completado</span>
+        </div>
+        <div class="priv">Academic · Private repo</div>
+        <div class="proj-desc">App Android con integración de backend completa. Arquitecturas MVVM y MVC con separación clara de responsabilidades y servicios REST.</div>
+        <div class="proj-stack">
+          <span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">.NET</span><span class="chip">C#</span>
+        </div>
+      </div>
+      <div class="proj wip">
+        <div class="proj-top">
+          <div class="proj-name">REST API Portfolio</div>
+          <span class="proj-badge wip-b">En progreso</span>
+        </div>
+        <div class="proj-desc">API documentada con buenas prácticas de diseño REST, semántica HTTP correcta y documentación Swagger. Próximamente pública en GitHub.</div>
+        <div class="proj-stack">
+          <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">MySQL</span><span class="chip">Postman</span>
+        </div>
+      </div>
+      <div class="proj wip">
+        <div class="proj-top">
+          <div class="proj-name">Full Stack Web App</div>
+          <span class="proj-badge wip-b">En progreso</span>
+        </div>
+        <div class="proj-desc">Proyecto personal de extremo a extremo: diseño de BD, API backend y UI con Vue.js. Próximamente público en GitHub.</div>
+        <div class="proj-stack">
+          <span class="chip">Laravel</span><span class="chip">Vue.js</span><span class="chip">MySQL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section>
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <span class="sec-label">Educación</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div>
+          <div class="edu-name">Ingeniería en Sistemas</div>
+          <div class="edu-sub">Bachelor's Degree · Último año</div>
+        </div>
+        <span class="edu-badge">Final Year</span>
+      </div>
+      <div class="edu-item">
+        <div>
+          <div class="edu-name">Diploma en Desarrollo de Software</div>
+          <div class="edu-sub">Formación técnica completa</div>
+        </div>
+        <span class="edu-badge">Completado</span>
+      </div>
+      <div class="edu-item">
+        <div>
+          <div class="edu-name">Diseño Web con HTML5</div>
+          <div class="edu-sub">Estructura semántica y fundamentos frontend</div>
+        </div>
+        <span class="edu-badge">Completado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="alt">
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <span class="sec-label">Contacto</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="contact-box">
+      <div class="contact-title">Hablemos</div>
+      <div class="contact-sub">Estoy buscando activamente una pasantía o posición junior. Si tenés una oportunidad o simplemente querés conectar, escribime.</div>
+      <div class="contact-links">
+        <a class="clink" href="https://www.linkedin.com/in/fernando-antonio-martinez-14b464309" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>
+          LinkedIn
+        </a>
+        <a class="clink" href="mailto:fernando.martinez.developer@gmail.com">
+          <svg viewBox="0 0 24 24"><path d="M24 5.46v13.08A2.46 2.46 0 0121.54 21H2.46A2.46 2.46 0 010 18.54V5.46L12 13.5 24 5.46zm0-2.46L12 11 0 3h21.54A2.46 2.46 0 0124 5.46V3z"/></svg>
+          fernando.martinez.developer@gmail.com
+        </a>
+        <a class="clink" href="https://github.com/Fernand0martinez" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.6-4.04-1.6-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-bar"></div>
+  <p>Fernando Martinez &copy; 2026 · Built with HTML &amp; CSS · Hosted on GitHub Pages</p>
+</footer>
+
+</body>
+</html>
