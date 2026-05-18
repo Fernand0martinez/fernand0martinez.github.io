@@ -73,23 +73,99 @@ section{padding:80px 40px;}
 .sk-tag{font-size:11px;color:#475569;background:rgba(20,35,70,0.5);border:1px solid #1a2f55;padding:3px 10px;border-radius:5px;}
 .sk-tag.p{color:#38BDF8;border-color:rgba(56,189,248,0.22);background:rgba(56,189,248,0.06);}
 
-/* PROJECTS */
-.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.proj{background:#050A14;border:1px solid #1a2f55;border-radius:12px;padding:22px;transition:all 0.2s;}
-.proj:hover{border-color:rgba(34,211,238,0.3);transform:translateY(-2px);}
-.proj.wip{border-style:dashed;opacity:0.72;}
-.proj.wip:hover{opacity:0.9;}
-.proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;}
-.proj-name{font-size:15px;font-weight:600;color:#CBD5E1;}
-.proj-badge{font-size:10px;padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
-.done{background:rgba(16,185,129,0.09);border:1px solid rgba(16,185,129,0.22);color:#34D399;}
-.wip-b{background:rgba(245,158,11,0.09);border:1px solid rgba(245,158,11,0.2);color:#FBBF24;}
-.priv{background:rgba(100,116,139,0.1);border:1px solid rgba(100,116,139,0.2);color:#64748B;font-size:10px;padding:2px 8px;border-radius:4px;margin-bottom:8px;display:inline-block;}
-.proj-desc{font-size:13px;color:#475569;line-height:1.7;margin-bottom:14px;}
-.proj-stack{display:flex;flex-wrap:wrap;gap:5px;}
-.chip{font-size:11px;background:rgba(29,78,216,0.09);border:1px solid rgba(29,78,216,0.2);color:#60A5FA;padding:3px 9px;border-radius:5px;}
-.proj-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:#1D4ED8;text-decoration:none;margin-top:12px;transition:color 0.2s;}
-.proj-link:hover{color:#22D3EE;}
+/* =====================
+   PROJECTS — nuevo diseño
+   ===================== */
+.proj-layout{display:flex;flex-direction:column;gap:14px;}
+
+/* Card principal CIGECA */
+.proj-featured{
+  background:#050A14;
+  border:1px solid rgba(34,211,238,0.35);
+  border-radius:14px;
+  padding:28px 28px 24px;
+  cursor:default;
+  position:relative;
+  overflow:hidden;
+  transition:border-color 0.25s,transform 0.25s;
+}
+.proj-featured::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#22D3EE,#1D4ED8,transparent);
+}
+.proj-featured:hover{border-color:rgba(34,211,238,0.6);transform:translateY(-2px);}
+
+.proj-featured-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px;}
+.proj-featured-title{font-size:20px;font-weight:700;color:#F1F5F9;letter-spacing:-0.3px;}
+.featured-badge{
+  font-size:10px;padding:4px 12px;border-radius:20px;white-space:nowrap;flex-shrink:0;
+  background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.4);color:#22D3EE;
+  letter-spacing:0.6px;
+}
+.proj-featured-sub{font-size:13px;color:#22D3EE;margin-bottom:14px;font-weight:500;}
+.proj-featured-desc{font-size:14px;color:#64748B;line-height:1.8;margin-bottom:18px;max-width:760px;}
+.proj-featured-meta{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:18px;}
+.meta-item{display:flex;align-items:center;gap:6px;font-size:12px;color:#475569;}
+.meta-dot{width:5px;height:5px;border-radius:50%;background:#22D3EE;flex-shrink:0;}
+.proj-featured-stack{display:flex;flex-wrap:wrap;gap:6px;}
+.chip-lg{font-size:12px;background:rgba(29,78,216,0.12);border:1px solid rgba(29,78,216,0.28);color:#60A5FA;padding:4px 12px;border-radius:6px;}
+
+/* Row de cards secundarias */
+.proj-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+/* Cards clickeables pendientes */
+.proj-pending{
+  background:#050A14;
+  border:1px solid #1a2f55;
+  border-radius:12px;
+  padding:22px;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  transition:all 0.2s;
+  text-align:left;
+  width:100%;
+  color:inherit;
+  font-family:inherit;
+}
+.proj-pending:hover{
+  border-color:rgba(34,211,238,0.25);
+  transform:translateY(-2px);
+  background:#060D1A;
+}
+.proj-pending:active{transform:translateY(0);}
+
+.proj-pending-icon{
+  width:38px;height:38px;border-radius:9px;
+  background:rgba(29,78,216,0.1);border:1px solid rgba(29,78,216,0.2);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;
+  font-size:16px;
+}
+.proj-pending-name{font-size:15px;font-weight:600;color:#CBD5E1;margin-bottom:8px;}
+.proj-pending-desc{font-size:13px;color:#334155;line-height:1.6;margin-bottom:14px;}
+.proj-pending-hint{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;color:#1D4ED8;letter-spacing:0.4px;
+}
+.proj-pending-hint svg{width:11px;height:11px;fill:currentColor;opacity:0.7;}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:#0D1F3C;border:1px solid rgba(34,211,238,0.35);
+  color:#94A3B8;font-size:13px;padding:12px 22px;border-radius:10px;
+  display:flex;align-items:center;gap:10px;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.25s,transform 0.25s;
+  z-index:999;white-space:nowrap;
+  box-shadow:0 4px 24px rgba(0,0,0,0.5);
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast-icon{font-size:15px;color:#22D3EE;flex-shrink:0;}
 
 /* AGILE */
 .agile-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -105,11 +181,6 @@ section{padding:80px 40px;}
 .edu-name{font-size:14px;color:#CBD5E1;font-weight:500;margin-bottom:3px;}
 .edu-sub{font-size:12px;color:#475569;}
 .edu-badge{font-size:11px;background:rgba(16,185,129,0.09);border:1px solid rgba(16,185,129,0.22);color:#34D399;padding:4px 12px;border-radius:20px;}
-
-/* LEARNING */
-.learn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:9px;}
-.learn-item{background:#050A14;border:1px solid #1a2f55;border-radius:9px;padding:12px 16px;font-size:13px;color:#475569;display:flex;align-items:center;gap:9px;}
-.learn-arrow{color:#22D3EE;font-size:12px;flex-shrink:0;}
 
 /* CONTACT */
 .contact-box{background:#050A14;border:1px solid #1a2f55;border-radius:14px;padding:48px 40px;text-align:center;}
@@ -128,17 +199,29 @@ footer p{font-size:12px;color:#1E293B;}
 /* DIVIDER */
 .alt{background:#060C18;}
 
+/* Badges status */
+.done{background:rgba(16,185,129,0.09);border:1px solid rgba(16,185,129,0.22);color:#34D399;font-size:10px;padding:3px 10px;border-radius:20px;}
+.wip-b{background:rgba(245,158,11,0.09);border:1px solid rgba(245,158,11,0.2);color:#FBBF24;font-size:10px;padding:3px 10px;border-radius:20px;}
+.priv{background:rgba(100,116,139,0.1);border:1px solid rgba(100,116,139,0.2);color:#64748B;font-size:10px;padding:2px 8px;border-radius:4px;margin-bottom:10px;display:inline-block;}
+
 @media(max-width:700px){
   nav{padding:0 20px;}
   .hero{padding:90px 24px 50px;}
-  .about-grid,.proj-grid,.agile-grid{grid-template-columns:1fr;}
+  .about-grid,.agile-grid,.proj-row{grid-template-columns:1fr;}
   section{padding:60px 24px;}
   .contact-box{padding:32px 24px;}
   footer{padding:20px 24px;}
+  .proj-featured{padding:20px 18px 18px;}
 }
 </style>
 </head>
 <body>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon">⏳</span>
+  <span id="toast-msg">Proyecto pendiente de agregar — próximamente disponible.</span>
+</div>
 
 <nav>
   <div class="nav-inner">
@@ -170,12 +253,11 @@ footer p{font-size:12px;color:#1E293B;}
       <span class="htag hi">Spring Boot</span>
       <span class="htag hi">Laravel</span>
       <span class="htag hi">Java</span>
-      <span class="htag hi">Java Script</span>
+      <span class="htag hi">JavaScript</span>
       <span class="htag hi">Vue.js</span>
-      <span class="htag hi">Java</span>
       <span class="htag">Kotlin</span>
       <span class="htag">.NET / C#</span>
-      <span class="htag">MySQL / SQL Server /Oracle</span>
+      <span class="htag">MySQL / SQL Server / Oracle</span>
       <span class="htag">REST APIs</span>
     </div>
     <div class="hero-links">
@@ -223,7 +305,7 @@ footer p{font-size:12px;color:#1E293B;}
       </div>
       <div class="about-text">
         <p>Soy un <strong>desarrollador full stack orientado al backend</strong>, apasionado por construir software limpio, organizado, escalable y mantenible.</p>
-        <p>Con base sólida en <strong>Java con Java Script usando Spring Boot, PHP con Vue usando Laravel</strong>, disfruto diseñar APIs bien estructuradas y trabajar con bases de datos relacionales.</p>
+        <p>Con base sólida en <strong>Java con JavaScript usando Spring Boot, PHP con Vue usando Laravel</strong>, disfruto diseñar APIs bien estructuradas y trabajar con bases de datos relacionales.</p>
         <p>Actualmente en el <strong>último año de Ingeniería en Sistemas</strong> y en búsqueda activa de una <strong>pasantía o posición junior</strong> para crecer profesionalmente y contribuir a proyectos reales.</p>
         <p>Me motivan los desafíos técnicos, el trabajo en equipo y las metodologías ágiles aplicadas de forma efectiva.</p>
       </div>
@@ -288,50 +370,79 @@ footer p{font-size:12px;color:#1E293B;}
       <span class="sec-label">Proyectos</span>
       <div class="sec-line"></div>
     </div>
-    <div class="proj-grid">
-      <div class="proj">
-        <div class="proj-top">
-          <div class="proj-name">Full Stack Web System</div>
-          <span class="proj-badge done">Completado</span>
+
+    <div class="proj-layout">
+
+      <!-- ★ PROYECTO PRINCIPAL: CIGECA -->
+      <div class="proj-featured">
+        <div class="proj-featured-header">
+          <div>
+            <div class="proj-featured-title">CIGECA</div>
+            <div class="proj-featured-sub">Sistema de Gestión · Proyecto Principal</div>
+          </div>
+          <span class="featured-badge">★ DESTACADO</span>
         </div>
+
         <div class="priv">Academic · Private repo</div>
-        <div class="proj-desc">Sistema web colaborativo con backend estructurado, endpoints REST y frontend interactivo. Gestión ágil con Jira y GitHub en equipo.</div>
-        <div class="proj-stack">
-          <span class="chip">Laravel</span><span class="chip">PHP</span><span class="chip">Vue.js</span><span class="chip">MySQL</span><span class="chip">Jira</span>
+
+        <div class="proj-featured-desc">
+          Sistema web completo desarrollado en equipo con gestión ágil usando Jira y GitHub. Incluye backend estructurado con endpoints REST, frontend interactivo y modelado de base de datos relacional. Desarrollado bajo metodologías ágiles con roles definidos, sprints y revisiones de código colaborativas.
+        </div>
+
+        <div class="proj-featured-meta">
+          <span class="meta-item"><span class="meta-dot"></span>Full Stack Web System</span>
+          <span class="meta-item"><span class="meta-dot"></span>Equipo colaborativo</span>
+          <span class="meta-item"><span class="meta-dot"></span>Gestión con Jira</span>
+          <span class="meta-item"><span class="meta-dot"></span>REST API + Frontend</span>
+        </div>
+
+        <div class="proj-featured-stack">
+          <span class="chip-lg">Laravel</span>
+          <span class="chip-lg">PHP</span>
+          <span class="chip-lg">Vue.js</span>
+          <span class="chip-lg">MySQL</span>
+          <span class="chip-lg">Jira</span>
+          <span class="chip-lg">GitHub</span>
         </div>
       </div>
-      <div class="proj">
-        <div class="proj-top">
-          <div class="proj-name">Mobile App + Backend</div>
-          <span class="proj-badge done">Completado</span>
-        </div>
-        <div class="priv">Academic · Private repo</div>
-        <div class="proj-desc">App Android con integración de backend completa. Arquitecturas MVVM y MVC con separación clara de responsabilidades y servicios REST.</div>
-        <div class="proj-stack">
-          <span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">.NET</span><span class="chip">C#</span>
-        </div>
-      </div>
-      <div class="proj wip">
-        <div class="proj-top">
-          <div class="proj-name">REST API Portfolio</div>
-          <span class="proj-badge wip-b">En progreso</span>
-        </div>
-        <div class="proj-desc">API documentada con buenas prácticas de diseño REST, semántica HTTP correcta y documentación Swagger. Próximamente pública en GitHub.</div>
-        <div class="proj-stack">
-          <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">MySQL</span><span class="chip">Postman</span>
-        </div>
-      </div>
-      <div class="proj wip">
-        <div class="proj-top">
-          <div class="proj-name">Full Stack Web App</div>
-          <span class="proj-badge wip-b">En progreso</span>
-        </div>
-        <div class="proj-desc">Proyecto personal de extremo a extremo: diseño de BD, API backend y UI con Vue.js. Próximamente público en GitHub.</div>
-        <div class="proj-stack">
-          <span class="chip">Laravel</span><span class="chip">Vue.js</span><span class="chip">MySQL</span>
-        </div>
-      </div>
-    </div>
+
+      <!-- FILA DE CARDS SECUNDARIAS -->
+      <div class="proj-row">
+
+        <!-- Card pendiente 1 -->
+        <button class="proj-pending" onclick="showToast('REST API Portfolio — próximamente disponible en GitHub.')">
+          <div class="proj-pending-icon">🚧</div>
+          <div class="proj-pending-name">REST API Portfolio</div>
+          <div class="proj-pending-desc">API documentada con buenas prácticas REST, semántica HTTP y docs Swagger. Spring Boot + MySQL.</div>
+          <div class="proj-stack" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+            <span style="font-size:11px;background:rgba(29,78,216,0.09);border:1px solid rgba(29,78,216,0.2);color:#60A5FA;padding:3px 9px;border-radius:5px;">Java</span>
+            <span style="font-size:11px;background:rgba(29,78,216,0.09);border:1px solid rgba(29,78,216,0.2);color:#60A5FA;padding:3px 9px;border-radius:5px;">Spring Boot</span>
+            <span style="font-size:11px;background:rgba(29,78,216,0.09);border:1px solid rgba(29,78,216,0.2);color:#60A5FA;padding:3px 9px;border-radius:5px;">MySQL</span>
+          </div>
+          <div class="proj-pending-hint">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            Pendiente de agregar
+          </div>
+        </button>
+
+        <!-- Card pendiente 2 -->
+        <button class="proj-pending" onclick="showToast('Full Stack Web App — próximamente disponible en GitHub.')">
+          <div class="proj-pending-icon">🚧</div>
+          <div class="proj-pending-name">Full Stack Web App</div>
+          <div class="proj-pending-desc">Proyecto personal de extremo a extremo: diseño de BD, API backend y UI con Vue.js. Laravel + MySQL.</div>
+          <div class="proj-stack" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+            <span style="font-size:11px;background:rgba(29,78,216,0.09);border:1px solid rgba(29,78,216,0.2);color:#60A5FA;padding:3px 9px;border-radius:5px;">Laravel</span>
+            <span style="font-size:11px;background:rgba(29,78,216,0.09);border:1px solid rgba(29,78,216,0.2);color:#60A5FA;padding:3px 9px;border-radius:5px;">Vue.js</span>
+            <span style="font-size:11px;background:rgba(29,78,216,0.09);border:1px solid rgba(29,78,216,0.2);color:#60A5FA;padding:3px 9px;border-radius:5px;">MySQL</span>
+          </div>
+          <div class="proj-pending-hint">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            Pendiente de agregar
+          </div>
+        </button>
+
+      </div><!-- /proj-row -->
+    </div><!-- /proj-layout -->
   </div>
 </section>
 
@@ -402,6 +513,18 @@ footer p{font-size:12px;color:#1E293B;}
   <div class="footer-bar"></div>
   <p>Fernando Martinez &copy; 2026 · Built with HTML &amp; CSS · Hosted on GitHub Pages</p>
 </footer>
+
+<script>
+let toastTimer = null;
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toast-msg');
+  toastMsg.textContent = msg;
+  toast.classList.add('show');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+}
+</script>
 
 </body>
 </html>
